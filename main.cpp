@@ -1,4 +1,7 @@
 #include <Novice.h>
+#include "Mytypedef.h"
+#include "Player.h"
+#include "PlayerMove.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -11,6 +14,22 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	Player player = { 
+		{100.0,0.0f},
+		{0.0f,-0.8f},
+		{0.0f,-0.8f},
+		5.0f,32.0f,
+		WHITE,false,
+		false
+	};
+	
+	float NewPositionY = 0.0f;
+
+	/*int LeftPosX;
+	int RightPosX;
+	int TopPosY;
+	int BottomPosY;*/
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -25,6 +44,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
+		PlayerMove(&player, keys);
+
+		PlayerJump(&player, keys);
+
+		NewPositionY = (player.position.y - 500) * -1;
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -32,6 +57,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		Novice::DrawEllipse((int)player.position.x, (int)NewPositionY, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
 
 		///
 		/// ↑描画処理ここまで
