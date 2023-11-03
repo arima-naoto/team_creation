@@ -2,6 +2,7 @@
 #include "Mytypedef.h"
 #include "Player.h"
 #include "PlayerMove.h"
+#include "ToScreen.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -24,7 +25,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		false
 	};
 	
-	float NewPositionY = 0.0f;
+	//float NewPositionY = 0.0f;
 
 	/*int LeftPosX;
 	int RightPosX;
@@ -48,7 +49,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PlayerJump(&player, keys);
 
-		NewPositionY = (player.position.y - 500) * -1;
+		//NewPositionY = (player.position.y - 500) * -1;
+
+		Vector2 ScreenPlayerPosition = ToScreen(player.position);
 
 		///
 		/// ↑更新処理ここまで
@@ -58,7 +61,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
-		Novice::DrawEllipse((int)player.position.x, (int)NewPositionY, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
 
 		///
 		/// ↑描画処理ここまで
