@@ -1,10 +1,10 @@
 #include <Novice.h>
 #include "Player.h"
 
-void PlayerJump(Player* player, char keys[] ) {
+void PlayerJump(Player* player, char keys[],char preKeys[]) {
 
 	
-	if (keys[DIK_SPACE] != 0 && player->position.y == player->radius) {
+	if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == false && player->position.y == player->radius) {
 		player->velocity.y = 10.0f;
 	}
 

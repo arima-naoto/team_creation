@@ -47,7 +47,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PlayerMove(&player, keys);
 
-		PlayerJump(&player, keys);
+		PlayerJump(&player, keys,preKeys);
 
 		//NewPositionY = (player.position.y - 500) * -1;
 
