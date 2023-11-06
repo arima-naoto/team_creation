@@ -4,6 +4,7 @@
 #include "PlayerMove.h"
 #include "ToScreen.h"
 #include "Easing.h"
+#include "Translate.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -33,9 +34,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		0.0f,0.0f,
 		300.0f,
 		BLACK,
-		false,
 		false
 	};
+
+	Box2 box2 = {
+		{1280.0f,0.0f},
+		-1280.0f,720.0f,
+		0.0f,0.0f,
+		0.0f,0.0f,
+		300.0f,
+		BLACK,
+		false
+	};
+
+	float timer = 0.0f;
+
+	bool istranslate[40];
+	istranslate[0] = false;
+	istranslate[1] = false;
 	
 	//float NewPositionY = 0.0f;
 
@@ -61,7 +77,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PlayerJump(&player, keys,preKeys);
 
-		EaseIn(&player, &box);
+		EaseIn(&player, &box,&box2,timer);
+
+		EaseIn2(&box2, istranslate);
 
 		//NewPositionY = (player.position.y - 500) * -1;
 
@@ -75,9 +93,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
+		Translate(istranslate);
+
 		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
 
 		EaseInDraw(&box);
+		EaseInDraw2(&box2);
+
+		Novice::ScreenPrintf(0, 0, "box.width + box.x = %f", box.width + box.EasedX);
+		Novice::ScreenPrintf(0, 30, "box2.width + box2.x = %f", box2.width + box2.EasedX);
+		Novice::ScreenPrintf(0, 60, "box.isEase = %d",box.isEase);
+		Novice::ScreenPrintf(0, 90, "box2.isEase = %d",box2.isEase);
+		Novice::ScreenPrintf(0, 120, "Timer = %f",timer);
+		Novice::ScreenPrintf(0, 150, "Player.speed = %f",player.speed);
 
 		///
 		/// ↑描画処理ここまで
