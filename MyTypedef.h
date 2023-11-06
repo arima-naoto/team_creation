@@ -16,3 +16,17 @@ typedef struct Player {
 	bool JumpSystem;
 	
 }Player;
+
+typedef struct Box {
+	Vector2 position;
+	float width;
+	float height;
+	float t;
+	float EasedT;
+	float EasedX;
+	float EasedX1;
+	float EasedX2;
+	unsigned int color;
+	bool isEase;
+	bool TransLate;
+}Box;

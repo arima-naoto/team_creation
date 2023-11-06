@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "PlayerMove.h"
 #include "ToScreen.h"
+#include "Easing.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -17,11 +18,22 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char preKeys[256] = {0};
 
 	Player player = { 
-		{100.0,0.0f},
+		{640.0f,0.0f},
 		{0.0f,-0.8f},
 		{0.0f,-0.8f},
 		5.0f,32.0f,
 		WHITE,false,
+		false
+	};
+
+	Box box = {
+		{0.0f,0.0f},
+		0.0f,720.0f,
+		0.0f,0.0f,
+		0.0f,0.0f,
+		300.0f,
+		BLACK,
+		false,
 		false
 	};
 	
@@ -49,6 +61,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PlayerJump(&player, keys,preKeys);
 
+		EaseIn(&player, &box);
+
 		//NewPositionY = (player.position.y - 500) * -1;
 
 		Vector2 ScreenPlayerPosition = ToScreen(player.position);
@@ -62,6 +76,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 
 		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+
+		EaseInDraw(&box);
 
 		///
 		/// ↑描画処理ここまで
