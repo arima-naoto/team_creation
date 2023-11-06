@@ -28,7 +28,7 @@ typedef struct Box {
 	float EasedX2;
 	unsigned int color;
 	bool isEase;
-	bool isTranslate[20];
+	bool isTranslate[40];
 }Box;
 
 typedef struct Box2 {
