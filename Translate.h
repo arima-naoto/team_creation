@@ -1,5 +1,5 @@
 #pragma once
 
-void Translate(bool istranslate[20]);
+void Translate(bool istranslate[40]);
 
 
