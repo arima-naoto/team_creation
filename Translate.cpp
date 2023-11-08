@@ -1,5 +1,12 @@
 #include <Novice.h>
 #include "Translate.h"
+#include "PlayerMove.h"
+
+void PlayerTranslate(Player* player, bool istranslate[40]) {
+	if (player->position.x >= 1246) {
+		istranslate[0] = true;
+	}
+}
 
 void Translate(bool istranslate[40]) {
 

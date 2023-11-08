@@ -16,30 +16,3 @@ typedef struct Player {
 	bool JumpSystem;
 	
 }Player;
-
-typedef struct Box {
-	Vector2 position;
-	float width;
-	float height;
-	float t;
-	float EasedT;
-	float EasedX;
-	float EasedX1;
-	float EasedX2;
-	unsigned int color;
-	bool isEase;
-	bool isTranslate[40];
-}Box;
-
-typedef struct Box2 {
-	Vector2 position;
-	float width;
-	float height;
-	float t;
-	float EasedT;
-	float EasedX;
-	float EasedX1;
-	float EasedX2;
-	unsigned int color;
-	bool isEase;
-}Box2;
