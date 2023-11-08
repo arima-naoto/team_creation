@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "PlayerMove.h"
 #include "ToScreen.h"
-#include "Translate.h"
+#include "BackGroundDraw.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -29,6 +29,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	bool istranslate[40];
 	istranslate[0] = false;
 	istranslate[1] = false;
+	istranslate[2] = false;
 	
 	//float NewPositionY = 0.0f;
 
@@ -71,6 +72,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Translate(istranslate);
 
 		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+
+		Novice::ScreenPrintf(0, 0, "istranslate[2] = %d", istranslate[2]);
 
 		///
 		/// ↑描画処理ここまで

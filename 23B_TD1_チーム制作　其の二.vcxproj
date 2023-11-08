@@ -108,6 +108,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGroundDraw.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -122,6 +123,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Translate.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGroundDraw.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />
@@ -153,7 +155,6 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="ToScreen.h" />
-    <ClInclude Include="Translate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
