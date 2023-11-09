@@ -3,7 +3,7 @@
 
 void PlayerMove(Player* player, char keys[]);
 
-void PlayerTranslate(Player* player, bool istranslate[40]);
+void PlayerTranslate(Player* player, int istranslate[40]);
 
 
 

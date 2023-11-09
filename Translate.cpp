@@ -1,22 +1,33 @@
 #include "PlayerMove.h"
 
-void PlayerTranslate(Player* player, bool istranslate[40]) {
-	if (istranslate[0] == false) {
+void PlayerTranslate(Player* player, int istranslate[40]) {
+	if (istranslate[0] == 0) {
+
 		if (player->position.x >= 1246) {
-			istranslate[1] = true;
-			player->position.x = 100.0f;
+			istranslate[0] = 1;
+			player->position.x = 45.0f;
 		}
-	}
 
-	if (istranslate[1] == true) {
 		if (player->position.x <= 32) {
-			istranslate[1] = false;
-			player->position.x = 1248.0f;
+			istranslate[0] = 2;
+			player->position.x = 1235.0f;
 		}
-
-
 	}
 
+	if (istranslate[0] == 1) {
+		if (player->position.x <= 32) {
+			istranslate[0] = 0;
+			player->position.x = 1235.0f;
+		}
+	}
+
+	if (istranslate[0] == 2) {
+
+		if (player->position.x >= 1246) {
+			istranslate[0] = 0;
+			player->position.x = 32.0f;
+		}
+	}
 }
 
 

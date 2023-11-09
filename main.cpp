@@ -26,12 +26,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		false
 	};
 
-	bool istranslate[40];
-	istranslate[0] = false;
-	istranslate[1] = false;
-	istranslate[2] = false;
-	
-	//float NewPositionY = 0.0f;
+	int istranslate[40];
+	istranslate[0] = 0;
 
 	/*int LeftPosX;
 	int RightPosX;
@@ -57,8 +53,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		PlayerTranslate(&player, istranslate);
 
-		//NewPositionY = (player.position.y - 500) * -1;
-
 		Vector2 ScreenPlayerPosition = ToScreen(player.position);
 
 		///
@@ -73,7 +67,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
 
-		Novice::ScreenPrintf(0, 0, "istranslate[2] = %d", istranslate[2]);
+		Novice::ScreenPrintf(0, 0, "istranslate[0] = %d", istranslate[0]);
 
 		///
 		/// ↑描画処理ここまで

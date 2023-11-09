@@ -1,4 +1,4 @@
 #pragma once
 #include "MyTypedef.h"
 
-void Translate(bool istranslate[40]);
+void Translate(int istranslate[40]);
