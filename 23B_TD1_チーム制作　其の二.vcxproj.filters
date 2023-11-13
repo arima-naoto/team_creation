@@ -53,6 +53,12 @@
     <ClCompile Include="BackGroundDraw.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="BGTranslate.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Shake.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -131,5 +137,7 @@
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="ToScreen.h" />
     <ClInclude Include="BackGroundDraw.h" />
+    <ClInclude Include="BGTranslate.h" />
+    <ClInclude Include="Shake.h" />
   </ItemGroup>
 </Project>

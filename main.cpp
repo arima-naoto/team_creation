@@ -4,6 +4,8 @@
 #include "PlayerMove.h"
 #include "ToScreen.h"
 #include "BackGroundDraw.h"
+#include "BGTranslate.h"
+#include "Shake.h"
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -21,18 +23,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		{640.0f,0.0f},
 		{0.0f,-0.8f},
 		{0.0f,-0.8f},
+		{0.0f,0.0f},
 		5.0f,32.0f,
+		0.0f,
 		WHITE,false,
 		false
+	};
+
+	Box box = {
+		{640.0f,32.0f},
+		32.0f,
+		BLUE
 	};
 
 	int istranslate[40];
 	istranslate[0] = 0;
 
-	/*int LeftPosX;
-	int RightPosX;
-	int TopPosY;
-	int BottomPosY;*/
+	float playerLeftX = (player.position.x - player.radius);
+	float playerRightX = (player.position.x + player.radius);
+
+	float BoxLeftX = (box.position.x - box.radius);
+	float BoxRightX = (box.position.x + box.radius);
+	
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -47,13 +59,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		PlayerMove(&player, keys);
+		PlayerMove(&player, keys, playerLeftX, playerRightX);
 
 		PlayerJump(&player, keys,preKeys);
 
 		PlayerTranslate(&player, istranslate);
 
+		BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate);
+
+		PlayerShake(&player, istranslate);
+
 		Vector2 ScreenPlayerPosition = ToScreen(player.position);
+
+		Vector2 ScreenBoxPosition = ToScreen(box.position);
 
 		///
 		/// ↑更新処理ここまで
@@ -65,9 +83,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		Translate(istranslate);
 
-		Novice::DrawEllipse((int)player.position.x, (int)ScreenPlayerPosition.y, (int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+		if (istranslate[0] == 2) {
+			Novice::DrawEllipse((int)box.position.x, (int)ScreenBoxPosition.y, (int)box.radius, (int)box.radius, 0.0f, (int)box.color, kFillModeSolid);
+		}
 
-		Novice::ScreenPrintf(0, 0, "istranslate[0] = %d", istranslate[0]);
+		Novice::DrawEllipse((int)player.position.x + (int)player.rand.x, (int)ScreenPlayerPosition.y + (int)player.rand.y, 
+			(int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+		
+		Novice::ScreenPrintf(0, 0, "LeftX = %f", playerLeftX);
+		Novice::ScreenPrintf(0, 30, "RightX = %f", playerRightX);
 
 		///
 		/// ↑描画処理ここまで
