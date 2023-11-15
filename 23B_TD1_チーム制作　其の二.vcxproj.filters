@@ -14,6 +14,12 @@
     <Filter Include="KamataEngine\Adapter">
       <UniqueIdentifier>{c6468eb4-788b-4a83-b207-a5f4804e56c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cppファイル">
+      <UniqueIdentifier>{a4007a3a-1482-48ca-9383-a5801a6fd9fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headerファイル">
+      <UniqueIdentifier>{bf6b898f-bd69-4085-99a0-9d3c61424b3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -32,32 +38,29 @@
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp">
       <Filter>KamataEngine\Adapter</Filter>
     </ClCompile>
-    <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMove.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="ToScreen.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Translate.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="BackGroundDraw.cpp">
-      <Filter>KamataEngine</Filter>
+      <Filter>cppファイル</Filter>
     </ClCompile>
-    <ClCompile Include="BGTranslate.cpp">
-      <Filter>KamataEngine</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>cppファイル</Filter>
     </ClCompile>
     <ClCompile Include="Shake.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate2.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp">
       <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate3.cpp">
+      <Filter>cppファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,12 +135,23 @@
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h">
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
-    <ClInclude Include="MyTypedef.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerMove.h" />
-    <ClInclude Include="ToScreen.h" />
-    <ClInclude Include="BackGroundDraw.h" />
-    <ClInclude Include="BGTranslate.h" />
-    <ClInclude Include="Shake.h" />
+    <ClInclude Include="BackGroundDraw.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="BGTranslate.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTypedef.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ToScreen.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="translate.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

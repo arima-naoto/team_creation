@@ -109,7 +109,6 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGroundDraw.cpp" />
-    <ClCompile Include="BGTranslate.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -119,10 +118,10 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Shake.cpp" />
-    <ClCompile Include="ToScreen.cpp" />
     <ClCompile Include="Translate.cpp" />
+    <ClCompile Include="Translate2.cpp" />
+    <ClCompile Include="Translate3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGroundDraw.h" />
@@ -156,9 +155,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="MyTypedef.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerMove.h" />
-    <ClInclude Include="Shake.h" />
     <ClInclude Include="ToScreen.h" />
+    <ClInclude Include="translate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

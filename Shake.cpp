@@ -1,9 +1,9 @@
-#include "Shake.h"
+#include "Player.h"
 #include <stdlib.h>
 
-void PlayerShake(Player* player ,int istranslate[40]) {
+void PlayerShake(Player* player ,int istranslate[1]) {
 
-	if (istranslate[0] == 2) {
+	if (istranslate[0] == 2|| istranslate[0] == 3 || istranslate[0] == 6) {
 
 		if (player->position.x <= 33) {
 			player->position.x = 33.0f;

@@ -1,11 +1,10 @@
 #include <Novice.h>
-#include "Mytypedef.h"
-#include "Player.h"
-#include "PlayerMove.h"
-#include "ToScreen.h"
-#include "BackGroundDraw.h"
-#include "BGTranslate.h"
-#include "Shake.h"
+#include <Mytypedef.h>
+#include <Player.h>
+#include <ToScreen.h>
+#include <BackGroundDraw.h>
+#include <BGTranslate.h>
+#include <translate.h>
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -36,7 +35,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		BLUE
 	};
 
-	int istranslate[40];
+	int istranslate[1];
 	istranslate[0] = 0;
 
 	float playerLeftX = (player.position.x - player.radius);
@@ -59,15 +58,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		PlayerMove(&player, keys, playerLeftX, playerRightX);
+		
 
+		PlayerMove(&player, keys, playerLeftX, playerRightX);
 		PlayerJump(&player, keys,preKeys);
+		PlayerShake(&player, istranslate);
 
 		PlayerTranslate(&player, istranslate);
+		PlayerTranslate2(&player, istranslate);
+		PlayerTranslate3(&player, istranslate);
 
 		BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate);
-
-		PlayerShake(&player, istranslate);
+		BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate);
 
 		Vector2 ScreenPlayerPosition = ToScreen(player.position);
 
@@ -83,7 +85,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		Translate(istranslate);
 
-		if (istranslate[0] == 2) {
+		if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || istranslate[0] == 7) {
 			Novice::DrawEllipse((int)box.position.x, (int)ScreenBoxPosition.y, (int)box.radius, (int)box.radius, 0.0f, (int)box.color, kFillModeSolid);
 		}
 
@@ -92,6 +94,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		
 		Novice::ScreenPrintf(0, 0, "LeftX = %f", playerLeftX);
 		Novice::ScreenPrintf(0, 30, "RightX = %f", playerRightX);
+
+		Novice::ScreenPrintf(0, 60, "istranslate[0] = %d", istranslate[0]);
 
 		///
 		/// ↑描画処理ここまで
