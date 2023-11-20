@@ -1,10 +1,14 @@
 #include <Novice.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include <Mytypedef.h>
 #include <Player.h>
 #include <ToScreen.h>
 #include <BackGroundDraw.h>
 #include <BGTranslate.h>
 #include <translate.h>
+#include <DoesNotExistBG.h>
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -18,22 +22,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
+	int WorpHandle = Novice::LoadTexture("./Resources/images/Worp.png");
+
 	Player player = { 
 		{640.0f,0.0f},
 		{0.0f,-0.8f},
 		{0.0f,-0.8f},
 		{0.0f,0.0f},
-		5.0f,32.0f,
+		7.0f,32.0f,
 		0.0f,
 		WHITE,false,
 		false
 	};
 
 	Box box = {
-		{640.0f,32.0f},
+		{640.0f,0.0f},
 		32.0f,
-		BLUE
+		WHITE
 	};
+
+	DoesNotExistBG* bg = new DoesNotExistBG();
+	bg->position_.x = 0;
+	bg->position_.y = 0;
 
 	int istranslate[1];
 	istranslate[0] = 0;
@@ -43,7 +53,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	float BoxLeftX = (box.position.x - box.radius);
 	float BoxRightX = (box.position.x + box.radius);
-	
+
+	int count = 0;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -58,8 +69,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		
-
 		PlayerMove(&player, keys, playerLeftX, playerRightX);
 		PlayerJump(&player, keys,preKeys);
 		PlayerShake(&player, istranslate);
@@ -68,8 +77,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		PlayerTranslate2(&player, istranslate);
 		PlayerTranslate3(&player, istranslate);
 
-		BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate);
-		BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate);
+		BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate,count);
+		BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate,count);
 
 		Vector2 ScreenPlayerPosition = ToScreen(player.position);
 
@@ -86,16 +95,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Translate(istranslate);
 
 		if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || istranslate[0] == 7) {
-			Novice::DrawEllipse((int)box.position.x, (int)ScreenBoxPosition.y, (int)box.radius, (int)box.radius, 0.0f, (int)box.color, kFillModeSolid);
+			Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y - 65, WorpHandle, 1, 1, 0.0f, (int)box.color);
 		}
+
+		bg->Draw(count);
 
 		Novice::DrawEllipse((int)player.position.x + (int)player.rand.x, (int)ScreenPlayerPosition.y + (int)player.rand.y, 
 			(int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
-		
-		Novice::ScreenPrintf(0, 0, "LeftX = %f", playerLeftX);
-		Novice::ScreenPrintf(0, 30, "RightX = %f", playerRightX);
 
-		Novice::ScreenPrintf(0, 60, "istranslate[0] = %d", istranslate[0]);
+
+		Novice::ScreenPrintf(0, 0, "isTranslate[0] = %d", istranslate[0]);
+		Novice::ScreenPrintf(0, 20, "count = %d", count);
 
 		///
 		/// ↑描画処理ここまで
