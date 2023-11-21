@@ -9,6 +9,7 @@
 #include <BGTranslate.h>
 #include <translate.h>
 #include <DoesNotExistBG.h>
+#include <EaseIn.h>
 
 const char kWindowTitle[] = "チーム制作";
 
@@ -22,7 +23,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
+	int TitleHandle = Novice::LoadTexture("./Resources/images/TitleSprite.png");
 	int WorpHandle = Novice::LoadTexture("./Resources/images/Worp.png");
+
+	enum TeamCriate {
+		TITLE,
+		GAME,
+	};
+
+	TeamCriate Scene = TITLE;
 
 	Player player = { 
 		{640.0f,0.0f},
@@ -56,6 +65,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	int count = 0;
 
+	Vector2 ScreenPlayerPosition = { 0 };
+
+	Vector2 ScreenBoxPosition = { 0 };
+
+	float EaseInX = 0.0f;
+	float EaseInY = 0.0f;
+	float width = 1280.0f;
+	float height = 0.0f;
+	bool easeIn = false;
+	float x = 0.0f;
+
+	float PosY = 0.0f;
+	float Start = 0.0f;//開始位置
+	float End = 720.0f;//終了位置
+	float Frame = 0.0f;//現在の時間
+	float EndFrame = 50.0f;//全体の時間、ゴールに到達するまでの時間
+
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
@@ -69,20 +95,46 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		PlayerMove(&player, keys, playerLeftX, playerRightX);
-		PlayerJump(&player, keys,preKeys);
-		PlayerShake(&player, istranslate);
+		switch (Scene) {
 
-		PlayerTranslate(&player, istranslate);
-		PlayerTranslate2(&player, istranslate);
-		PlayerTranslate3(&player, istranslate);
+		case TITLE:
 
-		BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate,count);
-		BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX,keys,preKeys,istranslate,count);
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == false) {
+				easeIn = true;
+				Frame = 0.0f;
+			}
 
-		Vector2 ScreenPlayerPosition = ToScreen(player.position);
+			if (easeIn == true) {
+				Frame++;
+			}
 
-		Vector2 ScreenBoxPosition = ToScreen(box.position);
+			if (Frame == EndFrame) {
+				easeIn = false; 
+			}
+
+			x = Frame / EndFrame;
+			PosY = Start + (End - Start) * EaseIn(x);
+
+			break;
+
+		case GAME:
+
+			PlayerMove(&player, keys, playerLeftX, playerRightX);
+			PlayerJump(&player, keys, preKeys);
+			PlayerShake(&player, istranslate);
+
+			PlayerTranslate(&player, istranslate);
+			PlayerTranslate2(&player, istranslate);
+			PlayerTranslate3(&player, istranslate);
+
+			BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
+			BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
+
+			ScreenPlayerPosition = ToScreen(player.position);
+			ScreenBoxPosition = ToScreen(box.position);
+
+			break;
+		}
 
 		///
 		/// ↑更新処理ここまで
@@ -92,20 +144,36 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
-		Translate(istranslate);
 
-		if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || istranslate[0] == 7) {
-			Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y - 65, WorpHandle, 1, 1, 0.0f, (int)box.color);
+		switch (Scene) {
+
+		case TITLE:
+
+			Novice::DrawSprite(0, 0, TitleHandle, 1, 1, 0.0f, WHITE);
+
+			Novice::DrawBox((int)EaseInX, (int)EaseInY, (int)width, (int)height + (int)PosY, 0.0f, BLACK, kFillModeSolid);
+
+			Novice::ScreenPrintf(0, 0, "Frame = %f", Frame);
+
+			break;
+
+		case GAME:
+
+			Translate(istranslate);
+
+			if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || istranslate[0] == 7) {
+				Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y - 65, WorpHandle, 1, 1, 0.0f, (int)box.color);
+			}
+
+			bg->Draw(count);
+
+			Novice::DrawEllipse((int)player.position.x + (int)player.rand.x, (int)ScreenPlayerPosition.y + (int)player.rand.y,
+				(int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
+
+
+			Novice::ScreenPrintf(0, 0, "isTranslate[0] = %d", istranslate[0]);
+			Novice::ScreenPrintf(0, 20, "count = %d", count);
 		}
-
-		bg->Draw(count);
-
-		Novice::DrawEllipse((int)player.position.x + (int)player.rand.x, (int)ScreenPlayerPosition.y + (int)player.rand.y, 
-			(int)player.radius, (int)player.radius, 0.0f, player.color, kFillModeSolid);
-
-
-		Novice::ScreenPrintf(0, 0, "isTranslate[0] = %d", istranslate[0]);
-		Novice::ScreenPrintf(0, 20, "count = %d", count);
 
 		///
 		/// ↑描画処理ここまで

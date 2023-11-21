@@ -65,6 +65,9 @@
     <ClCompile Include="DoesNotExistBG.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
+    <ClCompile Include="EaseIn.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -159,5 +162,6 @@
     <ClInclude Include="DoesNotExistBG.h">
       <Filter>headerファイル</Filter>
     </ClInclude>
+    <ClInclude Include="EaseIn.h" />
   </ItemGroup>
 </Project>
