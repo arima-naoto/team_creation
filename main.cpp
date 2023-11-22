@@ -28,6 +28,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int WorpHandle = Novice::LoadTexture("./Resources/images/Worp.png");
 
 	int TitleBackGround = Novice::LoadTexture("./Resources/images/bg.png");
+	int LetterHandle = Novice::LoadTexture("./Resources/images/TitleLetter.png");
 
 	enum TeamCriate {
 		TITLE,
@@ -76,16 +77,25 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	float EaseInY = 0.0f;
 	float width = 1280.0f;
 	float height = 0.0f;
-	bool easeIn = false;
+
+	bool SpriteChange = false;
+
+	float posX = 0.0f;
+	float start = -1050.0f;
+	float end = 0.0f;
+	float Frame = 0.0f;
+	float EndFrame = 100.0f;
+	bool isExpo = true;
+
 	float x = 0.0f;
 
 	float PosY = 0.0f;
-	float Start = 0.0f;//開始位置
-	float End = 550.0f;//終了位置
-	float Frame = 0.0f;//現在の時間
-	float EndFrame = 140.0f;//全体の時間、ゴールに到達するまでの時間
+	float Start2 = 0.0f;//開始位置
+	float End2 = 550.0f;//終了位置
+	float Frame2 = 0.0f;//現在の時間
+	float EndFrame2 = 140.0f;//全体の時間、ゴールに到達するまでの時間
 
-	bool SpriteChange = false;
+	bool easeIn = false;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -104,22 +114,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		case TITLE:
 
-			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == false) {
-				easeIn = true;
-				Frame = 0.0f;
-			}
-
-			if (easeIn == true) {
+			if (isExpo == true) {
 				Frame++;
 			}
 
-			if (Frame == EndFrame) {
+			if (Frame >= EndFrame) {
+				isExpo = false;
+			}
+
+			posX = start + (end - start) * EaseInExpo(Frame / EndFrame);
+
+			//ゲーム画面に行く処理
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == false) {
+				easeIn = true;
+				Frame2 = 0.0f;
+			}
+
+			if (easeIn == true) {
+				Frame2++;
+			}
+
+			if (Frame2 == EndFrame2) {
 				easeIn = false;
 				Scene = GAME;
 			}
 
-			x = Frame / EndFrame;
-			PosY = Start + (End - Start) * EaseIn(x);
+			x = Frame2 / EndFrame2;
+			PosY = Start2 + (End2 - Start2) * EaseIn(x);
 
 			if (height + PosY >= 830) {
 				SpriteChange = true;
@@ -166,10 +187,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite(0, 0, TitleHandle, 1, 1, 0.0f, WHITE);
 			}
 
+			Novice::DrawSprite((int)posX, 0, LetterHandle, 1, 1, 0.0f, WHITE);
+
 			if (SpriteChange == true) {
 				Novice::DrawSprite(0, 0, TitleBackGround, 1, 1, 0.0f, WHITE);
 			}
-			
 
 			Novice::DrawBox((int)EaseInX, (int)EaseInY, (int)width, (int)height + (int)PosY, 0.0f, BLACK, kFillModeSolid);
 
