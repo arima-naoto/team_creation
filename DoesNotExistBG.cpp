@@ -1,12 +1,19 @@
 #include <Novice.h>
 #include "DoesNotExistBG.h"
 
-void DoesNotExistBG::Draw(int& count) {
+void DoesNotExistBG::Draw(int istranslate[1]) {
 
-	width_ = 1280;
-	Height_ = 720;
+	int DoseNotExistBG = Novice::LoadTexture("./Resources/images/bg6.png");
 
-	if (count >= 4) {
-		Novice::DrawBox(0, 0, width_, Height_, 0.0f, BLACK, kFillModeSolid);
+	if (istranslate[0] == 31) {
+		Novice::DrawSprite((int)position_.x, (int)position_.y, DoseNotExistBG, 1, 1, 0.0f, WHITE);
+	}
+
+	if (istranslate[0] == 32) {
+		Novice::DrawSprite((int)position_.x, (int)position_.y, DoseNotExistBG, 1, 1, 0.0f, WHITE);
+	}
+
+	if (istranslate[0] == 33) {
+		Novice::DrawSprite((int)position_.x, (int)position_.y, DoseNotExistBG, 1, 1, 0.0f, WHITE);
 	}
 }

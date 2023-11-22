@@ -28,11 +28,11 @@ void Translate(int istranslate[1]) {
 	}
 
 	if (istranslate[0] == 7) {
-		Novice::DrawSprite(0, 0, BackGround[3], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[4], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 3 || istranslate[0] == 6) {
-		Novice::DrawSprite(0, 0, BackGround[4], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[5], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 5 || istranslate[0] == 8) {

@@ -66,7 +66,13 @@
       <Filter>cppファイル</Filter>
     </ClCompile>
     <ClCompile Include="EaseIn.cpp">
-      <Filter>KamataEngine</Filter>
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Count.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate4.cpp">
+      <Filter>cppファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +168,11 @@
     <ClInclude Include="DoesNotExistBG.h">
       <Filter>headerファイル</Filter>
     </ClInclude>
-    <ClInclude Include="EaseIn.h" />
+    <ClInclude Include="EaseIn.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Count.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

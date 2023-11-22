@@ -116,6 +116,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\TextureManager.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
+    <ClCompile Include="Count.cpp" />
     <ClCompile Include="DoesNotExistBG.cpp" />
     <ClCompile Include="EaseIn.cpp" />
     <ClCompile Include="main.cpp" />
@@ -124,6 +125,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Translate.cpp" />
     <ClCompile Include="Translate2.cpp" />
     <ClCompile Include="Translate3.cpp" />
+    <ClCompile Include="Translate4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGroundDraw.h" />
@@ -155,6 +157,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
+    <ClInclude Include="Count.h" />
     <ClInclude Include="DoesNotExistBG.h" />
     <ClInclude Include="EaseIn.h" />
     <ClInclude Include="MyTypedef.h" />
