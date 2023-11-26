@@ -5,8 +5,8 @@ void PlayerShake(Player* player ,int istranslate[1]) {
 
 	if (istranslate[0] == 2|| istranslate[0] == 3 || istranslate[0] == 6) {
 
-		if (player->position.x <= 33) {
-			player->position.x = 33.0f;
+		if (player->position.x <= 28) {
+			player->position.x = 28.0f;
 			player->Shake = true;
 		}
 

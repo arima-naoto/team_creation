@@ -1,13 +1,15 @@
 #include <Novice.h>
 #include "Player.h"
 
-void PlayerMove(Player* player, char keys[], float& playerLeftX, float& playerRightX) {
+void PlayerMove(Player* player, char keys[], float& playerLeftX, float& playerRightX,int &direction) {
 
 	if (keys[DIK_RIGHT]) {
+		direction = 2;
 		player->position.x += player->speed;
 	}
 
 	if (keys[DIK_LEFT]) {
+		direction = 1;
 		player->position.x -= player->speed;
 	}
 

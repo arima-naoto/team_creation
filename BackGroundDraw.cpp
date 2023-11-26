@@ -3,10 +3,11 @@
 
 void Translate(int istranslate[1]) {
 
-	int BackGround[3];
+	int BackGround[4];
 	BackGround[0] = Novice::LoadTexture("./Resources/images/bg.png");
-	BackGround[1] = Novice::LoadTexture("./Resources/images/bg3.png");
-	BackGround[2] = Novice::LoadTexture("./Resources/images/bg4.png");
+	BackGround[1] = Novice::LoadTexture("./Resources/images/bg1.png");
+	BackGround[2] = Novice::LoadTexture("./Resources/images/bg3.png");
+	BackGround[3] = Novice::LoadTexture("./Resources/images/bg4.png");
 
 	if (istranslate[0] == 0) {
 		Novice::DrawSprite(0, 0, BackGround[0], 1, 1, 0.0f, WHITE);
@@ -17,7 +18,7 @@ void Translate(int istranslate[1]) {
 	}
 
 	if (istranslate[0] == 2) {
-		Novice::DrawSprite(0, 0, BackGround[0], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[1], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 4) {
