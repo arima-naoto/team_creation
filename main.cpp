@@ -84,7 +84,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	float start = -1050.0f;
 	float end = 0.0f;
 	float Frame = 0.0f;
-	float EndFrame = 100.0f;
+	float EndFrame = 75.0f;
 	bool isExpo = true;
 
 	float x = 0.0f;
