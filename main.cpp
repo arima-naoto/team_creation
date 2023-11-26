@@ -12,7 +12,7 @@
 #include <EaseIn.h>
 #include <Count.h>
 
-const char kWindowTitle[] = "ワープレイヤー";
+const char kWindowTitle[] = "5242_ワープレイヤー";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
