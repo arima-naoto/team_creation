@@ -85,7 +85,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	bool SpriteChange = false;
 
 	float posX = 0.0f;
-	float start = -1050.0f;
+	float start = -300.0f;
 	float end = 0.0f;
 	float Frame = 0.0f;
 	float EndFrame = 75.0f;
@@ -195,7 +195,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite(0, 0, TitleHandle, 1, 1, 0.0f, WHITE);
 			}
 
-			Novice::DrawSprite((int)posX, 0, LetterHandle, 1, 1, 0.0f, WHITE);
+			Novice::DrawSprite(0, (int)posX, LetterHandle, 1, 1, 0.0f, WHITE);
 
 			if (SpriteChange == true) {
 				Novice::DrawSprite(0, 0, TitleBackGround, 1, 1, 0.0f, WHITE);
