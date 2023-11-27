@@ -7,6 +7,6 @@ public:
 	Vector2 position_;
 
 public:
-	void Draw(int istranslate[1]);
+	void Draw(int istranslate[1], float& BGRandX, float& BGRandY);
 };
 

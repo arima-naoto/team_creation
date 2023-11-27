@@ -165,6 +165,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	int DoorChange = 0;
 
+	//<背景のシェイクに使う変数の宣言>
+	float BGRandX = 0;
+	float BGRandY = 0;
+	float BGShakeTimer = 0;
+	bool BGShake = false;
+
 	//==================================================<クリア時に使うパーティクルの宣言と初期化>==========================================
 	int positionX = 640;
 	int positionY = 320;
@@ -283,6 +289,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			BGTranslate3(&box2, playerLeftX, playerRightX, BoxLeftX2, BoxRightX2, keys, preKeys, istranslate);
 
+			BackGroundShake(&player, BGRandX, BGRandY, BGShakeTimer, BGShake, istranslate);
+			BackGroundShake2(&player, BGRandX, BGRandY, BGShakeTimer, BGShake, istranslate);
+
 			ReturnCount(count, istranslate);
 
 			ScreenPlayerPosition = ToScreen(player.position);
@@ -376,7 +385,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		case GAME:
 
-			Translate(istranslate);
+			Translate(istranslate,BGRandX,BGRandY);
 
 			if (istranslate[0] == 0 && DoorChange == 0) {
 				Novice::DrawSprite((int)door.position.x, (int)ScreenDoor.y, DoorHandle[0], 1, 1, 0.0f, WHITE);
@@ -390,7 +399,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y + 25, WorpHandle, 1, 1, 0.0f, (int)box.color);
 			}
 
-			bg->Draw(istranslate);
+			bg->Draw(istranslate, BGRandX, BGRandY);
 
 			if (istranslate[0] == 33) {
 				Novice::DrawSprite((int)box2.position.x - (int)box2.radius, (int)ScreenBoxPosition.y + 25, WorpHandle, 1, 1, 0.0f, (int)box2.color);

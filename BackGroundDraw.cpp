@@ -1,7 +1,10 @@
 #include "BackGroundDraw.h"
 #include <Novice.h>
 
-void Translate(int istranslate[1]) {
+void Translate(int istranslate[1], float& BGRandX, float& BGRandY){
+
+	int BGpositionX = 0;
+	int BGpositionY = 0;
 
 	int BackGround[9];
 	BackGround[0] = Novice::LoadTexture("./Resources/images/bg.png");
@@ -15,39 +18,39 @@ void Translate(int istranslate[1]) {
 	BackGround[8] = Novice::LoadTexture("./Resources/images/bg8.png");
 
 	if (istranslate[0] == 0) {
-		Novice::DrawSprite(0, 0, BackGround[0], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[0], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 1) {
-		Novice::DrawSprite(0, 0, BackGround[2], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[2], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 2) {
-		Novice::DrawSprite(0, 0, BackGround[1], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[1], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 3) {
-		Novice::DrawSprite(0, 0, BackGround[4], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[4], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 4) {
-		Novice::DrawSprite(0, 0, BackGround[3], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[3], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 5) {
-		Novice::DrawSprite(0, 0, BackGround[5], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[5], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 6) {
-		Novice::DrawSprite(0, 0, BackGround[7], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[7], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 7) {
-		Novice::DrawSprite(0, 0, BackGround[6], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[6], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 8) {
-		Novice::DrawSprite(0, 0, BackGround[8], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(BGpositionX + (int)BGRandX, BGpositionY + (int)BGRandY, BackGround[8], 1, 1, 0.0f, WHITE);
 	}
 }
 
