@@ -74,6 +74,12 @@
     <ClCompile Include="Translate4.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
+    <ClCompile Include="KeyAcquisition.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorC.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -172,6 +178,12 @@
       <Filter>headerファイル</Filter>
     </ClInclude>
     <ClInclude Include="Count.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyAcquisition.h">
+      <Filter>headerファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorC.h">
       <Filter>headerファイル</Filter>
     </ClInclude>
   </ItemGroup>

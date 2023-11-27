@@ -118,7 +118,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="Count.cpp" />
     <ClCompile Include="DoesNotExistBG.cpp" />
+    <ClCompile Include="DoorC.cpp" />
     <ClCompile Include="EaseIn.cpp" />
+    <ClCompile Include="KeyAcquisition.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Shake.cpp" />
@@ -159,7 +161,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="Count.h" />
     <ClInclude Include="DoesNotExistBG.h" />
+    <ClInclude Include="DoorC.h" />
     <ClInclude Include="EaseIn.h" />
+    <ClInclude Include="KeyAcquisition.h" />
     <ClInclude Include="MyTypedef.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ToScreen.h" />

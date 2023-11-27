@@ -25,3 +25,27 @@ typedef struct Box {
 	float radius;
 	unsigned int color;
 }Box;
+
+typedef struct Kagi {
+
+	Vector2 position;
+	float radius;
+	unsigned int color;
+	bool Acquisition;
+
+}Kagi;
+
+typedef struct Door {
+	Vector2 position;
+	float radius;
+	unsigned int color;
+}Door;
+
+typedef struct Particle {
+
+	Vector2 position;
+	float speed;
+	unsigned int color;
+	bool isMove;
+
+}Particle;

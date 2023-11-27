@@ -69,3 +69,19 @@ void BGTranslate2(Box* box, float& playerLeftX, float& playerRightX, float& BoxL
 	}
 }
 
+void BGTranslate3(Box* box2, float& playerLeftX, float& playerRightX, float& BoxLeftX2, float& BoxRightX2, char keys[], char prekeys[], int istranslate[1]) {
+
+	if (istranslate[0] == 33) {
+		if (playerLeftX <= BoxRightX2 && BoxLeftX2 <= playerRightX) {
+			box2->color = RED;
+		}
+		else {
+			box2->color = WHITE;
+		}
+		if (box2->color == RED) {
+			if (keys[DIK_F] && prekeys[DIK_F] == false) {
+				istranslate[0] = 0;
+			}
+		}
+	}
+}

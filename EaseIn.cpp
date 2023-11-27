@@ -12,3 +12,9 @@ float EaseInExpo(float x) {
 	return x * x * x;
 
 }
+
+float EaseIn2(float x) {
+
+	return 1 - cosf((x * float(M_PI) / 1 * 2));
+
+}
