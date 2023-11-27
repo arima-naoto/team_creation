@@ -22,19 +22,19 @@ void Translate(int istranslate[1]) {
 	}
 
 	if (istranslate[0] == 4) {
-		Novice::DrawSprite(0, 0, BackGround[1], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[2], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 7) {
-		Novice::DrawSprite(0, 0, BackGround[2], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[3], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 3 || istranslate[0] == 5) {
-		Novice::DrawSprite(0, 0, BackGround[1], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[2], 1, 1, 0.0f, WHITE);
 	}
 
 	if (istranslate[0] == 6 || istranslate[0] == 8) {
-		Novice::DrawSprite(0, 0, BackGround[2], 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(0, 0, BackGround[3], 1, 1, 0.0f, WHITE);
 	}
 
 }

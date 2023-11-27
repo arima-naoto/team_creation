@@ -213,6 +213,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y + 25, WorpHandle, 1, 1, 0.0f, (int)box.color);
 			}
 
+			bg->Draw(istranslate);
+
+
 			if (Direction == 1) {
 				Novice::DrawSprite(((int)player.position.x + (int)player.rand.x) - (int)player.radius, (int)ScreenPlayerPosition.y + (int)player.rand.y,
 					PlayerHandle[0], 1, 1, 0.0f, WHITE);
@@ -222,8 +225,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite(((int)player.position.x + (int)player.rand.x) - (int)player.radius, (int)ScreenPlayerPosition.y + (int)player.rand.y,
 					PlayerHandle[1], 1, 1, 0.0f, WHITE);
 			}
-
-			bg->Draw(istranslate);
 
 		}
 
