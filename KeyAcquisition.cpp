@@ -2,7 +2,7 @@
 
 void KeyAcquisition(Kagi *kagi,float& playerLeftX, float& playerRightX, float& KeyLeftX, float& KeyRightX, int istranslate[1]) {
 
-	if (istranslate[0] == 3) {
+	if (istranslate[0] == 9) {
 		if (playerLeftX <= KeyRightX && KeyLeftX <= playerRightX) {
 			kagi->Acquisition = true;
 			kagi->position.x = -10;

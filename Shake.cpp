@@ -4,7 +4,7 @@
 
 void PlayerShake(Player* player ,int istranslate[1]) {
 
-	if (istranslate[0] == 2|| istranslate[0] == 3 || istranslate[0] == 6 || istranslate[0] == 31) {
+	if (istranslate[0] == 2 || istranslate[0] == 3 || istranslate[0] == 6 || istranslate[0] == 9 || istranslate[0] == 12 || istranslate[0] == 31) {
 
 		if (player->position.x <= 28) {
 			player->position.x = 28.0f;
@@ -46,7 +46,7 @@ void PlayerShake(Player* player ,int istranslate[1]) {
 
 void PlayerShake2(Player* player, int istranslate[1]) {
 
-	if (istranslate[0] == 1 || istranslate[0] == 5 || istranslate[0] == 8||istranslate[0] == 33) {
+	if (istranslate[0] == 1 || istranslate[0] == 5 || istranslate[0] == 8 || istranslate[0] == 11 || istranslate[0] == 14 || istranslate[0] == 33) {
 
 		if (player->position.x >= 1189) {
 			player->position.x = 1189.0f;
@@ -89,7 +89,7 @@ void PlayerShake2(Player* player, int istranslate[1]) {
 
 void BackGroundShake(Player* player, float& BGRandX, float& BGRandY, float& BGShakeTimer, bool &BGShake, int istranslate[1]) {
 
-	if (istranslate[0] == 2 || istranslate[0] == 3 || istranslate[0] == 6 || istranslate[0] == 31) {
+	if (istranslate[0] == 2 || istranslate[0] == 3 || istranslate[0] == 6 || istranslate[0] == 9 || istranslate[0] == 12 || istranslate[0] == 31) {
 
 		if (player->position.x <= 28) {
 			player->position.x = 28.0f;
@@ -131,7 +131,7 @@ void BackGroundShake(Player* player, float& BGRandX, float& BGRandY, float& BGSh
 
 void BackGroundShake2(Player* player, float& BGRandX, float& BGRandY, float& BGShakeTimer, bool& BGShake, int istranslate[1]) {
 
-	if (istranslate[0] == 1 || istranslate[0] == 5 || istranslate[0] == 8 || istranslate[0] == 33) {
+	if (istranslate[0] == 1 || istranslate[0] == 5 || istranslate[0] == 8 || istranslate[0] == 11 || istranslate[0] == 14 || istranslate[0] == 33) {
 
 		if (player->position.x >= 1189) {
 			player->position.x = 1189.0f;

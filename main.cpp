@@ -13,6 +13,7 @@
 #include <Count.h>
 #include <KeyAcquisition.h>
 #include <DoorC.h>
+#include <Button.h>
 
 const char kWindowTitle[] = "5242_ワープレイヤー";
 
@@ -26,6 +27,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
+	enum TeamCriate {
+		TITLE,
+		GAMEEXPLAIN,
+		GAME,
+		GAMECLEAR,
+	};
+
+	TeamCriate Scene = TITLE;
+
+	//=======================================================<画像の読み込み>================================================================
 	int TitleHandle = Novice::LoadTexture("./Resources/images/TitleSprite.png");
 	int WorpHandle = Novice::LoadTexture("./Resources/images/Worp.png");
 	int LetterHandle = Novice::LoadTexture("./Resources/images/TitleLetter.png");
@@ -45,16 +56,25 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int ClearHandle = Novice::LoadTexture("./Resources/images/ClearBackGround.png");
 	int ClearLetter = Novice::LoadTexture("./Resources/images/ClearLetter.png");
 
-	int TextureHandle = Novice::LoadTexture("./Resources/images/particle.png");
+	int CenterHandle = Novice::LoadTexture("./Resources/images/particle.png");
 
-	enum TeamCriate {
-		TITLE,
-		GAMEEXPLAIN,
-		GAME,
-		GAMECLEAR,
-	};
+	int ParticleHandle[5];
+	ParticleHandle[0] = Novice::LoadTexture("./Resources/images/particle.png");
+	ParticleHandle[1] = Novice::LoadTexture("./Resources/images/particle1.png");
+	ParticleHandle[2] = Novice::LoadTexture("./Resources/images/particle2.png");
+	ParticleHandle[3] = Novice::LoadTexture("./Resources/images/particle3.png");
+	ParticleHandle[4] = Novice::LoadTexture("./Resources/images/particle4.png");
 
-	TeamCriate Scene = TITLE;
+	//=========================================================<音声の読み込み>==============================================================
+	int TitleSound = Novice::LoadAudio("./Resources/sounds/TITLE.mp3");
+	int GameSound = Novice::LoadAudio("./Resources/sounds/GAME.mp3");
+	int ClearSound = Novice::LoadAudio("./Resources/sounds/CLEAR.mp3");
+
+	int SoundHandle = -1;
+	int SoundHandle2 = -1;
+	int SoundHandle4 = -1;
+	
+	//==================================================<クラス・構造体の宣言と初期化>=======================================================
 	Player player = { 
 		{600.0f,800.0f},
 		{0.0f,-0.8f},
@@ -106,6 +126,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Vector2 Screenkey2 = {};
 	Vector2 ScreenDoor = {};
 
+
+	//======================================================<int型・float型・Bool型の宣言と初期化>===========================================
 	int istranslate[1];
 	istranslate[0] = 0;
 
@@ -143,7 +165,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	float start = -300.0f;
 	float end = 0.0f;
 	float Frame = 0.0f;
-	float EndFrame = 75.0f;
+	float EndFrame = 50.0f;
 	bool isExpo = true;
 
 	float PosY = 0.0f;
@@ -179,7 +201,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	float Radius = 40;
 
-	const int max = 300;
+	const int max = 100;
 	Particle particle[max];
 	for (int i = 0; i < max; i++) {
 		particle[i].position.x = 0;
@@ -187,6 +209,46 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		particle[i].speed = rand() % 6 - 0.5f;
 		particle[i].color = 0xFFFFFF80;
 		particle[i].isMove = false;
+	}
+
+	const int max2 = 100;
+	Particle particle2[max2];
+	for (int i = 0; i < max2; i++) {
+		particle2[i].position.x = 0;
+		particle2[i].position.y = 0.0f;
+		particle2[i].speed = rand() % 6 - 0.5f;
+		particle2[i].color = 0xFFFFFF80;
+		particle2[i].isMove = false;
+	}
+
+	const int max3 = 100;
+	Particle particle3[max3];
+	for (int i = 0; i < max3; i++) {
+		particle3[i].position.x = 0;
+		particle3[i].position.y = 0.0f;
+		particle3[i].speed = rand() % 6 - 0.5f;
+		particle3[i].color = 0xFFFFFF80;
+		particle3[i].isMove = false;
+	}
+
+	const int max4 = 100;
+	Particle particle4[max4];
+	for (int i = 0; i < max4; i++) {
+		particle4[i].position.x = 0;
+		particle4[i].position.y = 0.0f;
+		particle4[i].speed = rand() % 6 - 0.5f;
+		particle4[i].color = 0xFFFFFF80;
+		particle4[i].isMove = false;
+	}
+
+	const int max5 = 100;
+	Particle particle5[max5];
+	for (int i = 0; i < max5; i++) {
+		particle5[i].position.x = 0;
+		particle5[i].position.y = 0.0f;
+		particle5[i].speed = rand() % 6 - 0.5f;
+		particle5[i].color = 0xFFFFFF80;
+		particle5[i].isMove = false;
 	}
 
 	// ウィンドウの×ボタンが押されるまでループ
@@ -206,6 +268,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		case TITLE:
 
+			//====================================================<タイトル画面のイージング>=================================================
 			if (isExpo == true) {
 				Frame++;
 			}
@@ -256,6 +319,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (Frame3 == EndFrame3) {
 				isQuad = false;
 				Frame3 = 0.0f;
+				Novice::StopAudio(SoundHandle);
 				Scene = GAME;
 			}
 
@@ -278,6 +342,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			PlayerTranslate2(&player, istranslate);
 			PlayerTranslate3(&player, istranslate);
 			PlayerTranslate4(&player, istranslate);
+			PlayerTranslate5(&player, istranslate);
+			PlayerTranslate6(&player, istranslate);
 
 			KeyAcquisition(&kagi,playerLeftX, playerRightX, keyLeftX, keyRightX, istranslate);
 			KeyAcquisition2(&kagi2,playerLeftX, playerRightX, keyLeftX2, keyRightX2, istranslate);
@@ -286,8 +352,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			BGTranslate(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
 			BGTranslate2(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
+			BGTranslate3(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
+			BGTranslate4(&box, playerLeftX, playerRightX, BoxLeftX, BoxRightX, keys, preKeys, istranslate, count);
 
-			BGTranslate3(&box2, playerLeftX, playerRightX, BoxLeftX2, BoxRightX2, keys, preKeys, istranslate);
+			BGTranslate5(&box2, playerLeftX, playerRightX, BoxLeftX2, BoxRightX2, keys, preKeys, istranslate);
 
 			BackGroundShake(&player, BGRandX, BGRandY, BGShakeTimer, BGShake, istranslate);
 			BackGroundShake2(&player, BGRandX, BGRandY, BGShakeTimer, BGShake, istranslate);
@@ -301,6 +369,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			if (istranslate[0] == 0 && DoorChange == 1) {
 				if (player.position.x >= 803) {
+					Novice::StopAudio(SoundHandle2);
 					Scene = GAMECLEAR;
 				}
 			}
@@ -323,6 +392,42 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 			}
 
+			for (int i = 0; i < max2; i++) {
+				if (particle2[i].isMove == false) {
+					particle2[i].isMove = true;
+					particle2[i].position.x = (positionX - Radius) + RandX;
+					particle2[i].position.y = (positionY - Radius) + RandY;
+					break;
+				}
+			}
+
+			for (int i = 0; i < max3; i++) {
+				if (particle3[i].isMove == false) {
+					particle3[i].isMove = true;
+					particle3[i].position.x = (positionX - Radius) + RandX;
+					particle3[i].position.y = (positionY - Radius) + RandY;
+					break;
+				}
+			}
+
+			for (int i = 0; i < max4; i++) {
+				if (particle4[i].isMove == false) {
+					particle4[i].isMove = true;
+					particle4[i].position.x = (positionX - Radius) + RandX;
+					particle4[i].position.y = (positionY - Radius) + RandY;
+					break;
+				}
+			}
+
+			for (int i = 0; i < max5; i++) {
+				if (particle5[i].isMove == false) {
+					particle5[i].isMove = true;
+					particle5[i].position.x = (positionX - Radius) + RandX;
+					particle5[i].position.y = (positionY - Radius) + RandY;
+					break;
+				}
+			}
+
 			for (int i = 0; i < max; i++) {
 				if (particle[i].isMove == true) {
 					particle[i].position.x += particle[i].speed * cosf(i * float(M_PI) / 10.0f);
@@ -333,6 +438,62 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 					if (particle[i].color <= 0xFFFFFF00) {
 						particle[i].color -= 0xFFFFFF80;
 						particle[i].isMove = false;
+					}
+				}
+			}
+
+			for (int i = 0; i < max2; i++) {
+				if (particle2[i].isMove == true) {
+					particle2[i].position.x += particle2[i].speed * cosf(i * float(M_PI) / 10.0f);
+					particle2[i].position.y += particle2[i].speed * sinf(i * float(M_PI) / 10.0f);
+
+					particle2[i].color -= 0x00000001;
+
+					if (particle2[i].color <= 0xFFFFFF00) {
+						particle2[i].color -= 0xFFFFFF80;
+						particle2[i].isMove = false;
+					}
+				}
+			}
+
+			for (int i = 0; i < max3; i++) {
+				if (particle3[i].isMove == true) {
+					particle3[i].position.x += particle3[i].speed * cosf(i * float(M_PI) / 10.0f);
+					particle3[i].position.y += particle3[i].speed * sinf(i * float(M_PI) / 10.0f);
+
+					particle3[i].color -= 0x00000001;
+
+					if (particle3[i].color <= 0xFFFFFF00) {
+						particle3[i].color -= 0xFFFFFF80;
+						particle3[i].isMove = false;
+					}
+				}
+			}
+
+			for (int i = 0; i < max4; i++) {
+				if (particle4[i].isMove == true) {
+					particle4[i].position.x += particle4[i].speed * cosf(i * float(M_PI) / 10.0f);
+					particle4[i].position.y += particle4[i].speed * sinf(i * float(M_PI) / 10.0f);
+
+					particle4[i].color -= 0x00000001;
+
+					if (particle4[i].color <= 0xFFFFFF00) {
+						particle4[i].color -= 0xFFFFFF80;
+						particle4[i].isMove = false;
+					}
+				}
+			}
+
+			for (int i = 0; i < max5; i++) {
+				if (particle5[i].isMove == true) {
+					particle5[i].position.x += particle5[i].speed * cosf(i * float(M_PI) / 10.0f);
+					particle5[i].position.y += particle5[i].speed * sinf(i * float(M_PI) / 10.0f);
+
+					particle5[i].color -= 0x00000001;
+
+					if (particle5[i].color <= 0xFFFFFF00) {
+						particle5[i].color -= 0xFFFFFF80;
+						particle5[i].isMove = false;
 					}
 				}
 			}
@@ -365,6 +526,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			Novice::DrawBox((int)EaseInX, (int)EaseInY, (int)width, (int)height + (int)PosY, 0.0f, BLACK, kFillModeSolid);
 
+			if (Novice::IsPlayingAudio(SoundHandle) == 0 || SoundHandle == -1) {
+				SoundHandle = Novice::PlayAudio(TitleSound, 1, 1.0f);
+			}
+
 			break;
 
 		case GAMEEXPLAIN:
@@ -395,7 +560,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)door.position.x, (int)ScreenDoor.y, DoorHandle[1], 1, 1, 0.0f, WHITE);
 			}
 
-			if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || istranslate[0] == 7) {
+			if (istranslate[0] == 1 || istranslate[0] == 2 || istranslate[0] == 4 || 
+				istranslate[0] == 5 || istranslate[0] == 6|| istranslate[0] == 7 || 
+				istranslate[0] == 10 || istranslate[0] == 13) {
 				Novice::DrawSprite((int)box.position.x - (int)box.radius, (int)ScreenBoxPosition.y + 25, WorpHandle, 1, 1, 0.0f, (int)box.color);
 			}
 
@@ -405,7 +572,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)box2.position.x - (int)box2.radius, (int)ScreenBoxPosition.y + 25, WorpHandle, 1, 1, 0.0f, (int)box2.color);
 			}
 
-			if (istranslate[0] == 3) {
+			if (istranslate[0] == 9) {
 				Novice::DrawSprite((int)kagi.position.x, (int)kagi.position.y, keyHandle, 1, 1, 0.0f, kagi.color);
 			}
 
@@ -431,21 +598,55 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 					PlayerHandle[1], 1, 1, 0.0f, WHITE);
 			}
 
+			Button(istranslate,&kagi,&kagi2);
+
+			if (Novice::IsPlayingAudio(SoundHandle2) == 0 || SoundHandle2 == -1) {
+				SoundHandle2 = Novice::PlayAudio(GameSound, 1, 1.0f);
+			}
+
 			break;
 
 		case GAMECLEAR:
 
 			Novice::DrawSprite(0, 0, ClearHandle, 1, 1, 0.0f, WHITE);
 
-			Novice::DrawSprite((positionX - (int)Radius) + (int)RandX, (positionY - (int)Radius) + (int)RandY, TextureHandle, 1, 1, 0.0f, WHITE);
+			Novice::DrawSprite((positionX - (int)Radius) + (int)RandX, (positionY - (int)Radius) + (int)RandY, CenterHandle, 1, 1, 0.0f, WHITE);
 
 			for (int i = 0; i < max; i++) {
 				if (particle[i].isMove == true) {
-					Novice::DrawSprite((int)particle[i].position.x, (int)particle[i].position.y, TextureHandle, 1, 1, 0.0f, particle[i].color);
+					Novice::DrawSprite((int)particle[i].position.x, (int)particle[i].position.y, ParticleHandle[0], 1, 1, 0.0f, particle[i].color);
+				}
+			}
+
+			for (int i = 0; i < max2; i++) {
+				if (particle2[i].isMove == true) {
+					Novice::DrawSprite((int)particle2[i].position.x, (int)particle2[i].position.y, ParticleHandle[1], 1, 1, 0.0f, particle2[i].color);
+				}
+			}
+
+			for (int i = 0; i < max3; i++) {
+				if (particle3[i].isMove == true) {
+					Novice::DrawSprite((int)particle3[i].position.x, (int)particle3[i].position.y, ParticleHandle[2], 1, 1, 0.0f, particle3[i].color);
+				}
+			}
+
+			for (int i = 0; i < max4; i++) {
+				if (particle4[i].isMove == true) {
+					Novice::DrawSprite((int)particle4[i].position.x, (int)particle4[i].position.y, ParticleHandle[3], 1, 1, 0.0f, particle4[i].color);
+				}
+			}
+
+			for (int i = 0; i < max5; i++) {
+				if (particle5[i].isMove == true) {
+					Novice::DrawSprite((int)particle5[i].position.x, (int)particle5[i].position.y, ParticleHandle[4], 1, 1, 0.0f, particle5[i].color);
 				}
 			}
 
 			Novice::DrawSprite(0, 0, ClearLetter, 1, 1, 0.0f, WHITE);
+
+			if (Novice::IsPlayingAudio(SoundHandle4) == 0 || SoundHandle4 == -1) {
+				SoundHandle4 = Novice::PlayAudio(ClearSound, 1, 1.0f);
+			}
 
 			break;
 		}

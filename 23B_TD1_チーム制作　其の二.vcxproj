@@ -109,6 +109,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGroundDraw.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -128,10 +129,13 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Translate2.cpp" />
     <ClCompile Include="Translate3.cpp" />
     <ClCompile Include="Translate4.cpp" />
+    <ClCompile Include="Translate5.cpp" />
+    <ClCompile Include="Translate6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGroundDraw.h" />
     <ClInclude Include="BGTranslate.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />

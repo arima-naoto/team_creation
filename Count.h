@@ -1,4 +1,4 @@
 #pragma once
 
-void ReturnCount(int &count, int istranslate[1]);
+void ReturnCount(int& count, int istranslate[1]);
 

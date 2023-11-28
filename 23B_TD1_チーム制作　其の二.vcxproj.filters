@@ -80,6 +80,15 @@
     <ClCompile Include="DoorC.cpp">
       <Filter>cppファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate5.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate6.cpp">
+      <Filter>cppファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -186,5 +195,6 @@
     <ClInclude Include="DoorC.h">
       <Filter>headerファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h" />
   </ItemGroup>
 </Project>
